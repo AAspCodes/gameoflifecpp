@@ -4,11 +4,6 @@
 
 using namespace std;
 
-#define HEIGHT 100
-#define WIDTH 100
-
-
-
 void gen(vector<vector<int> > &vec);
 void printout(vector<vector<int> > &vec);
 void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
@@ -39,10 +34,10 @@ int main()
 
 void gen(vector<vector<int> > &vec)
 {
-    vec.resize(HEIGHT, vector<int>(WIDTH, 0));
-    for (int i = 0; i < HEIGHT; i++)
+    vec.resize(100, vector<int>(100, 0));
+    for (int i = 0; i < vec.size(); i++)
     {
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < vec[i].size(); j++)
         {
             vec[i][j] = !(rand() % 6);
         }
@@ -51,9 +46,9 @@ void gen(vector<vector<int> > &vec)
 
 void printout(vector<vector<int> > &vec)
 {
-    for (int i = 0; i < HEIGHT; i++)
+    for (int i = 0; i < vec.size(); i++)
     {
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < vec.size(); j++)
         {
             cout << vec[i][j];
         }
@@ -63,16 +58,16 @@ void printout(vector<vector<int> > &vec)
 
 void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
 {
-    neighbors.resize(HEIGHT, vector<int>(WIDTH, 0));
+    neighbors.resize(100, vector<int>(100, 0));// TODO
 
-    for (int i = 0; i < HEIGHT; i++)
+    for (int i = 0; i < vec.size(); i++)
     {
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < vec[i].size(); j++)
         {
             int iMin = i == 0 ? 0 : i - 1;
-            int iMax = i + 2 >= HEIGHT ? HEIGHT : i + 2;
+            int iMax = i + 2 >= vec.size() ? vec.size() : i + 2;
             int jMin = j == 0 ? 0 : j - 1;
-            int jMax = j + 2 >= WIDTH ? WIDTH : j + 2;
+            int jMax = j + 2 >= vec[i].size() ? vec[i].size() : j + 2;
             int neighborsSum = 0;
 
             for (int y = iMin; y < iMax; y++)
@@ -97,9 +92,9 @@ void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
 
 void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
 {
-    for (int i = 0; i < HEIGHT; i++)
+    for (int i = 0; i < vec.size(); i++)
     {
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < vec[i].size(); j++)
         {
             int nval = neighbors[i][j];
 
@@ -120,9 +115,9 @@ void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
 
 void printecosystem(vector<vector<int> > &vec)
 {
-    for (int i = 0; i < HEIGHT; i++)
+    for (int i = 0; i < vec.size(); i++)
     {
-        for (int j = 0; j < WIDTH; j++)
+        for (int j = 0; j < vec[i].size(); j++)
         {
             cout << (vec[i][j] ? "#" : "  ");
         }
