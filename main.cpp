@@ -4,15 +4,15 @@
 
 using namespace std;
 
-void gen(vector<vector<int> > &vec);
+void gen(vector<vector<string> > &vec);
 void printout(vector<vector<int> > &vec);
-void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
-void playgod(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
+void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
+void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 
 int main()
 {
     int DIM = 100;
-    vector<vector<int> > v(DIM, vector<int>(DIM,0));
+    vector<vector<string> > v(DIM, vector<string>(DIM,""));
     vector<vector<int> > n(DIM, vector<int>(DIM,0));
 
     gen(v);
@@ -29,13 +29,13 @@ int main()
     return 0;
 }
 
-void gen(vector<vector<int> > &vec)
+void gen(vector<vector<string> > &vec)
 {
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec[i].size(); j++)
         {
-            vec[i][j] = !(rand() % 6);
+            vec[i][j] = !(rand() % 6) ? "#" : "  ";
         }
     }
 }
@@ -52,7 +52,7 @@ void printout(vector<vector<int> > &vec)
     }
 }
 
-void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
+void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
 {
     for (int i = 0; i < vec.size(); i++)
     {
@@ -72,7 +72,7 @@ void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
                     {
                         continue;
                     }
-                    if (vec[y][x])
+                    if (vec[y][x] == "#")
                     {
                         neighborsSum++;
                     }
@@ -83,7 +83,7 @@ void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
     }
 }
 
-void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
+void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
 {
     for (int i = 0; i < vec.size(); i++)
     {
@@ -91,18 +91,18 @@ void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
         {
             int nval = neighbors[i][j];
 
-            if (vec[i][j])
+            if (vec[i][j] == "#")
             {
                 if (nval != 3 && nval != 2)
                 {
-                    vec[i][j] = 0;
+                    vec[i][j] = "  ";
                 }
             }
             else if (nval == 3)
             {
-                vec[i][j] = 1;
+                vec[i][j] = "#";
             }
-            cout << (vec[i][j] ? "#" : "  ");
+            cout << vec[i][j];
         }
         cout << endl;
     }
