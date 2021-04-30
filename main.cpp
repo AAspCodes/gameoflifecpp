@@ -63,9 +63,9 @@ void countneighbors(){
 
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
-            int imin = i == 0 ? 0: i--;
+            int imin = i == 0 ? 0: i - 1;
             int imax = i + 2 >= HEIGHT ? HEIGHT: i + 2;
-            int jmin = j == 0 ? 0: j--;
+            int jmin = j == 0 ? 0: j - 1;
             int jmax = j + 2 >= WIDTH ? WIDTH: j + 2;
             int sumneighbors = 0;
 
