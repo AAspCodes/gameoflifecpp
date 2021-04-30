@@ -71,15 +71,15 @@ void countneighbors()
     {
         for (int j = 0; j < WIDTH; j++)
         {
-            int imin = i == 0 ? 0 : i - 1;
-            int imax = i + 2 >= HEIGHT ? HEIGHT : i + 2;
-            int jmin = j == 0 ? 0 : j - 1;
-            int jmax = j + 2 >= WIDTH ? WIDTH : j + 2;
-            int sumneighbors = 0;
+            int iMin = i == 0 ? 0 : i - 1;
+            int iMax = i + 2 >= HEIGHT ? HEIGHT : i + 2;
+            int jMin = j == 0 ? 0 : j - 1;
+            int jMax = j + 2 >= WIDTH ? WIDTH : j + 2;
+            int neighborsSum = 0;
 
-            for (int y = imin; y < imax; y++)
+            for (int y = iMin; y < iMax; y++)
             {
-                for (int x = jmin; x < jmax; x++)
+                for (int x = jMin; x < jMax; x++)
                 {
                     if (i == y && j == x)
                     {
@@ -87,12 +87,12 @@ void countneighbors()
                     }
                     if (v[y][x])
                     {
-                        sumneighbors++;
+                        neighborsSum++;
                     }
                 }
             }
 
-            n[i][j] = sumneighbors;
+            n[i][j] = neighborsSum;
         }
     }
 }
