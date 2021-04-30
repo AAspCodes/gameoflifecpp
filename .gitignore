@@ -51,7 +51,7 @@
 # Icon must end with two \r
 Icon
 
-main.dSYM*
+a.out.dSYM*
 
 # Thumbnails
 ._*
