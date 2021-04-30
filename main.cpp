@@ -90,17 +90,13 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
         for (int j = 0; j < vec[i].size(); j++)
         {
             int nval = neighbors[i][j];
-
-            if (vec[i][j] == "#")
-            {
-                if (nval != 3 && nval != 2)
-                {
-                    vec[i][j] = "  ";
-                }
-            }
-            else if (nval == 3)
+            if (nval == 3)
             {
                 vec[i][j] = "#";
+            }
+            else if (nval != 2) 
+            {
+                vec[i][j] = "  ";
             }
             cout << vec[i][j];
         }
