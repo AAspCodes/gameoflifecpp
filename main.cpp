@@ -8,7 +8,7 @@ void gen(vector<vector<int> > &vec);
 void printout(vector<vector<int> > &vec);
 void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
-void printecosystem(vector<vector<int> > &vec);
+
 
 int main()
 {
@@ -16,16 +16,13 @@ int main()
     vector<vector<int> > n;
 
     gen(v);
-    printecosystem(v);
 
     for (int i = 0; i < 100; i++)
     {
         // count neighbors
         countneighbors(v,n);
-        // check if above number kill, if below birth.
+        // check if above number kill, if below birth. and print out
         playgod(v,n);
-        // print out
-        printecosystem(v);
         // wait
         usleep(100000);
     }
@@ -109,20 +106,10 @@ void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
             {
                 vec[i][j] = 1;
             }
-        }
-    }
-}
-
-void printecosystem(vector<vector<int> > &vec)
-{
-    for (int i = 0; i < vec.size(); i++)
-    {
-        for (int j = 0; j < vec[i].size(); j++)
-        {
             cout << (vec[i][j] ? "#" : "  ");
         }
-
         cout << endl;
     }
+
     cout << "\n\n\n\n\n";
 }
