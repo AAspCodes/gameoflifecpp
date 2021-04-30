@@ -81,7 +81,7 @@ void countneighbors()
             {
                 for (int x = jmin; x < jmax; x++)
                 {
-                    if ((i == y) && (j == x))
+                    if (i == y && j == x)
                     {
                         continue;
                     }
