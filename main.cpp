@@ -10,7 +10,8 @@ using namespace std;
 vector<vector<int> > v;
 vector<vector<int> > n;
 
-void gen();
+
+void gen(vector<vector<int> > &vec);
 void printout(vector<vector<int> > &vec);
 void countneighbors();
 void playgod();
@@ -19,8 +20,8 @@ void printecosystem();
 int main()
 {
 
-    gen();
     printecosystem();
+    gen(v);
 
     for (int i = 0; i < 100; i++)
     {
@@ -36,14 +37,14 @@ int main()
     return 0;
 }
 
-void gen()
+void gen(vector<vector<int> > &vec)
 {
-    v.resize(HEIGHT, vector<int>(WIDTH, 0));
+    vec.resize(HEIGHT, vector<int>(WIDTH, 0));
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
         {
-            v[i][j] = !(rand() % 6);
+            vec[i][j] = !(rand() % 6);
         }
     }
 }
