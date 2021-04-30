@@ -7,14 +7,14 @@ using namespace std;
 #define HEIGHT 100
 #define WIDTH 100
 
-std::vector< std::vector<int> > v;
-std::vector< std::vector<int> > n;
+vector<vector<int> > v;
+vector<vector<int> > n;
 
-void gen(std::vector< std::vector<int> > &vec);
-void printout(std::vector< std::vector<int> > &vec);
-void countneighbors(std::vector< std::vector<int> > &vec, std::vector< std::vector<int> > &neighbors);
-void playgod(std::vector< std::vector<int> > &vec, std::vector< std::vector<int> > &neighbors);
-void printecosystem(std::vector< std::vector<int> > &vec);
+void gen();
+void printout(vector<vector<int> > &vec);
+void countneighbors();
+void playgod();
+void printecosystem();
 
 int main()
 {
@@ -22,16 +22,16 @@ int main()
     tim.tv_sec = 0;
     tim.tv_nsec = 100000000;
 
-    gen(v);
-    printecosystem(v);
+    gen();
+    printecosystem();
 
     for (int i = 0; i < 100; i++){
         // count neighbors
-        countneighbors(v,n);
+        countneighbors();
         // check if above number kill, if below birth.
-        playgod(v,n);
+        playgod();
         // print out
-        printecosystem(v);
+        printecosystem();
         // wait
         nanosleep(&tim, &tim2);
     } 
@@ -39,18 +39,17 @@ int main()
     return 0;
 }
 
-void gen(std::vector< std::vector<int> > &vec){
-    vec.resize(HEIGHT, std::vector<int>(WIDTH,0));
-    cout << "generated vector 2d" << endl;
+void gen(){
+    v.resize(HEIGHT, vector<int>(WIDTH,0));
 
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
-            vec[i][j] = rand() % 6 == 1 ? 1: 0;
+            v[i][j] = !(rand() % 6);
         }
     }
 }
 
-void printout(std::vector< std::vector<int> > &vec){
+void printout(vector<vector<int> > &vec){
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
             cout << vec[i][j];
@@ -59,14 +58,14 @@ void printout(std::vector< std::vector<int> > &vec){
     }
 }
 
-void countneighbors(std::vector< std::vector<int> > &vec, std::vector< std::vector<int> > &neighbors){
-    n.resize(HEIGHT, std::vector<int>(WIDTH,0));
+void countneighbors(){
+    n.resize(HEIGHT, vector<int>(WIDTH,0));
 
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
-            int imin = i == 0 ? 0: i - 1;
+            int imin = i == 0 ? 0: i--;
             int imax = i + 2 >= HEIGHT ? HEIGHT: i + 2;
-            int jmin = j == 0 ? 0: j - 1;
+            int jmin = j == 0 ? 0: j--;
             int jmax = j + 2 >= WIDTH ? WIDTH: j + 2;
             int sumneighbors = 0;
 
@@ -75,37 +74,37 @@ void countneighbors(std::vector< std::vector<int> > &vec, std::vector< std::vect
                     if ((i==y) && (j==x)){
                         continue;
                     }
-                    if (vec[y][x] == 1){
-                        sumneighbors += 1;
+                    if (v[y][x]){
+                        sumneighbors++;
                     }
                 }
             }
 
-            neighbors[i][j] = sumneighbors;
+            n[i][j] = sumneighbors;
         }
     }
 }
 
-void playgod(std::vector< std::vector<int> > &vec, std::vector< std::vector<int> > &neighbors){
+void playgod(){
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
-            int nval = neighbors[i][j];
+            int nval = n[i][j];
             
-            if (vec[i][j] == 1){
+            if (v[i][j]){
                 if ((nval != 3) && (nval != 2)){
-                    vec[i][j] = 0;
+                    v[i][j] = 0;
                 }
             } else if (nval == 3) {
-                vec[i][j] = 1;
+                v[i][j] = 1;
             }
         }
     }
 }
 
-void printecosystem(std::vector< std::vector<int> > &vec){
+void printecosystem(){
     for (int i = 0; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++){
-            cout << (vec[i][j] ? "#": "  ");
+            cout << (v[i][j] ? "#": "  ");
         }
         cout << endl;
     }
