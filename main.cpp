@@ -42,6 +42,7 @@ void gen(vector<vector<string> > &vec)
 
 void printout(vector<vector<int> > &vec)
 {
+    // for debugging purposes.
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec.size(); j++)
