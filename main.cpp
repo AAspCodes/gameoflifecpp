@@ -1,6 +1,6 @@
 #include "iostream"
 #include "random"
-#include "time.h"
+#include "unistd.h"
 
 using namespace std;
 
@@ -18,9 +18,6 @@ void printecosystem();
 
 int main()
 {
-    struct timespec tim, tim2;
-    tim.tv_sec = 0;
-    tim.tv_nsec = 100000000;
 
     gen();
     printecosystem();
@@ -34,7 +31,7 @@ int main()
         // print out
         printecosystem();
         // wait
-        nanosleep(&tim, &tim2);
+        usleep(100000);
     }
     return 0;
 }
