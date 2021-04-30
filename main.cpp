@@ -7,30 +7,30 @@ using namespace std;
 #define HEIGHT 100
 #define WIDTH 100
 
-vector<vector<int> > v;
-vector<vector<int> > n;
 
 
 void gen(vector<vector<int> > &vec);
 void printout(vector<vector<int> > &vec);
-void countneighbors();
-void playgod();
-void printecosystem();
+void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
+void playgod(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
+void printecosystem(vector<vector<int> > &vec);
 
 int main()
 {
+    vector<vector<int> > v;
+    vector<vector<int> > n;
 
-    printecosystem();
     gen(v);
+    printecosystem(v);
 
     for (int i = 0; i < 100; i++)
     {
         // count neighbors
-        countneighbors();
+        countneighbors(v,n);
         // check if above number kill, if below birth.
-        playgod();
+        playgod(v,n);
         // print out
-        printecosystem();
+        printecosystem(v);
         // wait
         usleep(100000);
     }
@@ -61,9 +61,9 @@ void printout(vector<vector<int> > &vec)
     }
 }
 
-void countneighbors()
+void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
 {
-    n.resize(HEIGHT, vector<int>(WIDTH, 0));
+    neighbors.resize(HEIGHT, vector<int>(WIDTH, 0));
 
     for (int i = 0; i < HEIGHT; i++)
     {
@@ -83,48 +83,48 @@ void countneighbors()
                     {
                         continue;
                     }
-                    if (v[y][x])
+                    if (vec[y][x])
                     {
                         neighborsSum++;
                     }
                 }
             }
 
-            n[i][j] = neighborsSum;
+            neighbors[i][j] = neighborsSum;
         }
     }
 }
 
-void playgod()
+void playgod(vector<vector<int> > &vec,vector<vector<int> > &neighbors)
 {
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
         {
-            int nval = n[i][j];
+            int nval = neighbors[i][j];
 
-            if (v[i][j])
+            if (vec[i][j])
             {
                 if (nval != 3 && nval != 2)
                 {
-                    v[i][j] = 0;
+                    vec[i][j] = 0;
                 }
             }
             else if (nval == 3)
             {
-                v[i][j] = 1;
+                vec[i][j] = 1;
             }
         }
     }
 }
 
-void printecosystem()
+void printecosystem(vector<vector<int> > &vec)
 {
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
         {
-            cout << (v[i][j] ? "#" : "  ");
+            cout << (vec[i][j] ? "#" : "  ");
         }
 
         cout << endl;
