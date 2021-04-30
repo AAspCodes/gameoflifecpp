@@ -51,6 +51,7 @@
 # Icon must end with two \r
 Icon
 
+*/info.plist
 
 # Thumbnails
 ._*
