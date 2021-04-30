@@ -91,7 +91,7 @@ void playgod(){
             int nval = n[i][j];
             
             if (v[i][j]){
-                if ((nval != 3) && (nval != 2)){
+                if (nval != 3 && nval != 2){
                     v[i][j] = 0;
                 }
             } else if (nval == 3) {
