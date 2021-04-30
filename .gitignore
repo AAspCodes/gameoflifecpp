@@ -73,11 +73,11 @@ Temporary Items
 
 ### vscode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
 *.code-workspace
-./tasks.json
+
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,vscode,macos
