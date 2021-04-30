@@ -9,11 +9,11 @@ void printout(vector<vector<int> > &vec);
 void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<int> > &vec, vector<vector<int> > &neighbors);
 
-
 int main()
 {
-    vector<vector<int> > v;
-    vector<vector<int> > n;
+    int DIM = 100;
+    vector<vector<int> > v(DIM, vector<int>(DIM,0));
+    vector<vector<int> > n(DIM, vector<int>(DIM,0));
 
     gen(v);
 
@@ -31,7 +31,6 @@ int main()
 
 void gen(vector<vector<int> > &vec)
 {
-    vec.resize(100, vector<int>(100, 0));
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec[i].size(); j++)
@@ -55,8 +54,6 @@ void printout(vector<vector<int> > &vec)
 
 void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
 {
-    neighbors.resize(100, vector<int>(100, 0));// TODO
-
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec[i].size(); j++)
@@ -81,7 +78,6 @@ void countneighbors(vector<vector<int> > &vec, vector<vector<int> > &neighbors)
                     }
                 }
             }
-
             neighbors[i][j] = neighborsSum;
         }
     }
