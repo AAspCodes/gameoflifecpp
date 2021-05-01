@@ -9,6 +9,7 @@ void gen(vector<vector<string> > &vec);
 void printout(vector<vector<int> > &vec);
 void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
+// void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors);
 
 int main()
 {
@@ -116,3 +117,23 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
 
     cout << "\n\n\n\n\n";
 }
+
+
+// void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors){
+//     int iMin = i == 0 ? 0 : i - 1;
+//     int iMax = i + 2 >= neighbors.size() ? neighbors.size() : i + 2;
+//     int jMin = j == 0 ? 0 : j - 1;
+//     int jMax = j + 2 >= neighbors[i].size() ? neighbors[i].size() : j + 2;
+
+//     for (int y = iMin; y < iMax; y++)
+//     {
+//         for (int x = jMin; x < jMax; x++)
+//         {
+//             if (i == y && j == x)
+//             {
+//                 continue;
+//             }
+//             neighbors[y][x] += life;
+//         }
+//     }
+// }
