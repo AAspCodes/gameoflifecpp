@@ -1,6 +1,7 @@
 #include "iostream"
 #include "random"
 #include "unistd.h"
+#include "chrono"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ int main()
     int DIM = 100;
     vector<vector<string> > v(DIM, vector<string>(DIM,""));
     vector<vector<int> > n(DIM, vector<int>(DIM,0));
+    auto start = std::chrono::high_resolution_clock::now();
 
     gen(v);
 
@@ -26,6 +28,14 @@ int main()
         // wait
         usleep(100000);
     }
+
+     auto stop = std::chrono::high_resolution_clock::now();
+
+
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+
+    cout << elapsed.count();
+
     return 0;
 }
 
