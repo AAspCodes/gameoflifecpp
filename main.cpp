@@ -27,7 +27,7 @@ int main()
         // check if above number kill, if below birth. and print out
         playgod(v,n);
         // wait
-        usleep(100000);
+        // usleep(100000);
     }
 
      auto stop = std::chrono::high_resolution_clock::now();
