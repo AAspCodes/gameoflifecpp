@@ -19,8 +19,8 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
 
     gen(v);
-
-    for (int i = 0; i < 100; i++)
+    // countneighbors(v,n);
+    for (int i = 0; i < 10000; i++)
     {
         // count neighbors
         countneighbors(v,n);
@@ -97,6 +97,8 @@ void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbor
 
 void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
 {
+
+    // vector<vector<int> > nbclone(neighbors);
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec[i].size(); j++)
@@ -108,36 +110,38 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
                 if (nval != 3 && nval != 2)
                 {
                     vec[i][j] = "  ";
+                    // neighboradjust(i,j,-1,nbclone);
                 }
             }
             else if (nval == 3)
             {
                 vec[i][j] = "#";
+                // neighboradjust(i,j,1,nbclone);
             }
-            cout << vec[i][j];
+            // cout << vec[i][j];
         }
-        cout << endl;
+        // cout << endl;
     }
-
-    cout << "\n\n\n\n\n";
+    // neighbors = nbclone;
+    // cout << "\n\n\n\n\n";
 }
 
 
-void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors){
-    int iMin = i == 0 ? 0 : i - 1;
-    int iMax = i + 2 >= neighbors.size() ? neighbors.size() : i + 2;
-    int jMin = j == 0 ? 0 : j - 1;
-    int jMax = j + 2 >= neighbors[i].size() ? neighbors[i].size() : j + 2;
+// void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors){
+//     int iMin = i == 0 ? 0 : i - 1;
+//     int iMax = i + 2 >= neighbors.size() ? neighbors.size() : i + 2;
+//     int jMin = j == 0 ? 0 : j - 1;
+//     int jMax = j + 2 >= neighbors[i].size() ? neighbors[i].size() : j + 2;
 
-    for (int y = iMin; y < iMax; y++)
-    {
-        for (int x = jMin; x < jMax; x++)
-        {
-            if (i == y && j == x)
-            {
-                continue;
-            }
-            neighbors[y][x] += life;
-        }
-    }
-}
+//     for (int y = iMin; y < iMax; y++)
+//     {
+//         for (int x = jMin; x < jMax; x++)
+//         {
+//             if (i == y && j == x)
+//             {
+//                 continue;
+//             }
+//             neighbors[y][x] += life;
+//         }
+//     }
+// }
