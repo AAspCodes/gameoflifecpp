@@ -6,7 +6,6 @@
 using namespace std;
 
 void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
-void printout(vector<vector<int> > &vec);
 void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors);
 
@@ -50,19 +49,6 @@ void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
             }
             
         }
-    }
-}
-
-void printout(vector<vector<int> > &vec)
-{
-    // for debugging purposes.
-    for (int i = 0; i < vec.size(); i++)
-    {
-        for (int j = 0; j < vec.size(); j++)
-        {
-            cout << vec[i][j];
-        }
-        cout << endl;
     }
 }
 
