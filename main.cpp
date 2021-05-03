@@ -12,20 +12,20 @@ void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors);
 int main()
 {
     int DIM = 100;
-    vector<vector<int> > n(DIM, vector<int>(DIM,0));
+    vector<vector<string> > v(DIM, vector<string>(DIM, ""));
+    vector<vector<int> > n(DIM, vector<int>(DIM, 0));
     auto start = std::chrono::high_resolution_clock::now();
 
-    gen(v,n);
+    gen(v, n);
     for (int i = 0; i < 10000; i++)
     {
         // check if above number kill, if below birth. and print out
-        playgod(v,n);
+        playgod(v, n);
         // wait
         usleep(100000);
     }
 
-     auto stop = std::chrono::high_resolution_clock::now();
-
+    auto stop = std::chrono::high_resolution_clock::now();
 
     auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
 
@@ -40,20 +40,21 @@ void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
     {
         for (int j = 0; j < vec[i].size(); j++)
         {
-            if (!(rand() % 6)){
+            if (!(rand() % 6))
+            {
                 vec[i][j] = "#";
                 neighboradjust(i, j, 1, neighbors);
-            } else {
+            }
+            else
+            {
                 vec[i][j] = "  ";
             }
-            
         }
     }
 }
 
-void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
+void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
 {
-
     vector<vector<int> > nbclone(neighbors);
     for (int i = 0; i < vec.size(); i++)
     {
@@ -66,13 +67,13 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
                 if (nval != 3 && nval != 2)
                 {
                     vec[i][j] = "  ";
-                    neighboradjust(i,j,-1,nbclone);
+                    neighboradjust(i, j, -1, nbclone);
                 }
             }
             else if (nval == 3)
             {
                 vec[i][j] = "#";
-                neighboradjust(i,j,1,nbclone);
+                neighboradjust(i, j, 1, nbclone);
             }
             cout << vec[i][j];
         }
@@ -82,8 +83,8 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
     cout << "\n\n\n\n\n";
 }
 
-
-void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors){
+void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors)
+{
     int iMin = i == 0 ? 0 : i - 1;
     int iMax = i + 2 >= neighbors.size() ? neighbors.size() : i + 2;
     int jMin = j == 0 ? 0 : j - 1;
