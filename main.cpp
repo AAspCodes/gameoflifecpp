@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void gen(vector<vector<string> > &vec);
+void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void printout(vector<vector<int> > &vec);
 void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
@@ -18,7 +18,7 @@ int main()
     vector<vector<int> > n(DIM, vector<int>(DIM,0));
     auto start = std::chrono::high_resolution_clock::now();
 
-    gen(v);
+    gen(v,n);
     // countneighbors(v,n);
     for (int i = 0; i < 10000; i++)
     {
@@ -40,13 +40,19 @@ int main()
     return 0;
 }
 
-void gen(vector<vector<string> > &vec)
+void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
 {
     for (int i = 0; i < vec.size(); i++)
     {
         for (int j = 0; j < vec[i].size(); j++)
         {
-            vec[i][j] = !(rand() % 6) ? "#" : "  ";
+            if (!(rand() % 6)){
+                vec[i][j] = "#";
+                neighboradjust(i, j, 1, neighbors);
+            } else {
+                vec[i][j] = "  ";
+            }
+            
         }
     }
 }
