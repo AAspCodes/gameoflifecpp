@@ -27,7 +27,7 @@ int main()
         // check if above number kill, if below birth. and print out
         playgod(v,n);
         // wait
-        // usleep(100000);
+        usleep(100000);
     }
 
      auto stop = std::chrono::high_resolution_clock::now();
@@ -118,12 +118,12 @@ void playgod(vector<vector<string> > &vec,vector<vector<int> > &neighbors)
                 vec[i][j] = "#";
                 neighboradjust(i,j,1,nbclone);
             }
-            // cout << vec[i][j];
+            cout << vec[i][j];
         }
-        // cout << endl;
+        cout << endl;
     }
-    // neighbors = nbclone;
-    // cout << "\n\n\n\n\n";
+    neighbors = nbclone;
+    cout << "\n\n\n\n\n";
 }
 
 
