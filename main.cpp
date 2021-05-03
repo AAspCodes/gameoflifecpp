@@ -23,7 +23,7 @@ int main()
     for (int i = 0; i < 10000; i++)
     {
         // count neighbors
-        countneighbors(v,n);
+        // countneighbors(v,n);
         // check if above number kill, if below birth. and print out
         playgod(v,n);
         // wait
