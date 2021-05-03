@@ -20,7 +20,7 @@ int main()
     gen(v, n);
     for (int i = 0; i < 10000; i++)
     {
-        // check if above number kill, if below birth. and print out
+        // check number of neighbors, kill/birth, update neighbors, print out.
         playgod(v, n);
         // wait
         usleep(100000);
