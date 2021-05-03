@@ -12,7 +12,6 @@ void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors);
 int main()
 {
     int DIM = 100;
-    vector<vector<string> > v(DIM, vector<string>(DIM,""));
     vector<vector<int> > n(DIM, vector<int>(DIM,0));
     auto start = std::chrono::high_resolution_clock::now();
 
