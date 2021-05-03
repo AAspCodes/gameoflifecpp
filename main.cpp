@@ -4,6 +4,7 @@
 #include "chrono"
 
 using namespace std;
+using namespace std::chrono;
 
 void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
@@ -14,7 +15,7 @@ int main()
     int DIM = 100;
     vector<vector<string> > v(DIM, vector<string>(DIM, ""));
     vector<vector<int> > n(DIM, vector<int>(DIM, 0));
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = high_resolution_clock::now(); // compile with c++ 20 or else the compiler will whine at you.
 
     gen(v, n);
     for (int i = 0; i < 10000; i++)
@@ -25,9 +26,9 @@ int main()
         usleep(100000);
     }
 
-    auto stop = std::chrono::high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
 
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    auto elapsed = duration_cast<nanoseconds>(stop - start);
 
     cout << elapsed.count();
 
