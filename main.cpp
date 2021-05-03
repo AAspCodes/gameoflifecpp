@@ -7,7 +7,6 @@ using namespace std;
 
 void gen(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void printout(vector<vector<int> > &vec);
-void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void playgod(vector<vector<string> > &vec, vector<vector<int> > &neighbors);
 void neighboradjust(int i, int j, int life, vector<vector<int> > &neighbors);
 
@@ -19,11 +18,8 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
 
     gen(v,n);
-    // countneighbors(v,n);
     for (int i = 0; i < 10000; i++)
     {
-        // count neighbors
-        // countneighbors(v,n);
         // check if above number kill, if below birth. and print out
         playgod(v,n);
         // wait
@@ -67,37 +63,6 @@ void printout(vector<vector<int> > &vec)
             cout << vec[i][j];
         }
         cout << endl;
-    }
-}
-
-void countneighbors(vector<vector<string> > &vec, vector<vector<int> > &neighbors)
-{
-    for (int i = 0; i < vec.size(); i++)
-    {
-        for (int j = 0; j < vec[i].size(); j++)
-        {
-            int iMin = i == 0 ? 0 : i - 1;
-            int iMax = i + 2 >= vec.size() ? vec.size() : i + 2;
-            int jMin = j == 0 ? 0 : j - 1;
-            int jMax = j + 2 >= vec[i].size() ? vec[i].size() : j + 2;
-            int neighborsSum = 0;
-
-            for (int y = iMin; y < iMax; y++)
-            {
-                for (int x = jMin; x < jMax; x++)
-                {
-                    if (i == y && j == x)
-                    {
-                        continue;
-                    }
-                    if (vec[y][x] == "#")
-                    {
-                        neighborsSum++;
-                    }
-                }
-            }
-            neighbors[i][j] = neighborsSum;
-        }
     }
 }
 
